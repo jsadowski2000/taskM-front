@@ -1,0 +1,12 @@
+[cdkDrag] {
+    padding: 16px;
+    margin: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+  }
+  
+  [cdkDropList] {
+    width: 300px;
+    max-width: 100%;
+  }

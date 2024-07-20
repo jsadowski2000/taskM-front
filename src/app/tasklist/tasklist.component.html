@@ -1,0 +1,11 @@
+<app-navbar></app-navbar>
+
+<div cdkDropList (cdkDropListDropped)="drop($event)">
+    <div *ngFor="let task of tasks" cdkDrag>
+      {{ task.taskName }}
+      <div>
+      {{ task.description }}
+    </div>
+    </div>
+  </div>
+
