@@ -1,0 +1,7 @@
+.mat-dialog-container {
+    padding: 20px;
+    max-width: 500px;
+  }
+  .button-spacer {
+    flex-grow: 1;
+  }

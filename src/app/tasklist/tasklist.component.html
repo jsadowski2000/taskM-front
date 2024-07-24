@@ -1,11 +1,98 @@
 <app-navbar></app-navbar>
-
-<div cdkDropList (cdkDropListDropped)="drop($event)">
-    <div *ngFor="let task of tasks" cdkDrag>
-      {{ task.taskName }}
-      <div>
-      {{ task.description }}
-    </div>
-    </div>
+<div class="container">
+  <div class="example-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>UNASSIGNED</mat-card-title>
+      </mat-card-header>
+      <div
+        cdkDropList
+        id="unassigned"
+        [cdkDropListData]="unassignedTasks"
+        [cdkDropListConnectedTo]="['inProgress', 'test', 'completed']"
+        class="example-list mat-elevation-z2"
+        (cdkDropListDropped)="drop($event)">
+        <mat-card *ngFor="let task of unassignedTasks" class="example-box" cdkDrag>
+          <mat-card-title>{{ task.taskName }}</mat-card-title>
+          <mat-card-content>{{ task.description }}</mat-card-content>
+          <mat-card-actions class="action-button">
+            <button mat-button class="action-button-left" (click)="deleteTask(task.taskId)"><i class="material-icons">delete</i></button>
+            <button mat-button class="action-button-right" (click)="openEditDialog(task)"><i class="material-icons">open_in_full</i></button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </mat-card>
   </div>
 
+  <div class="example-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>In Progress</mat-card-title>
+      </mat-card-header>
+      <div
+        cdkDropList
+        id="inProgress"
+        [cdkDropListData]="inProgressTasks"
+        [cdkDropListConnectedTo]="['unassigned', 'test', 'completed']"
+        class="example-list mat-elevation-z2"
+        (cdkDropListDropped)="drop($event)">
+        <mat-card *ngFor="let task of inProgressTasks" class="example-box" cdkDrag>
+          <mat-card-title>{{ task.taskName }}</mat-card-title>
+          <mat-card-content>{{ task.description }}</mat-card-content>
+          <mat-card-actions class="action-button">
+            <button mat-button class="action-button-left" (click)="deleteTask(task.taskId)"><i class="material-icons">delete</i></button>
+            <button mat-button class="action-button-right" (click)="openEditDialog(task)"><i class="material-icons">open_in_full</i></button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </mat-card>
+  </div>
+
+  <div class="example-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Tests</mat-card-title>
+      </mat-card-header>
+      <div
+        cdkDropList
+        id="test"
+        [cdkDropListData]="testTasks"
+        [cdkDropListConnectedTo]="['unassigned', 'inProgress', 'completed']"
+        class="example-list mat-elevation-z2"
+        (cdkDropListDropped)="drop($event)">
+        <mat-card *ngFor="let task of testTasks" class="example-box" cdkDrag>
+          <mat-card-title>{{ task.taskName }}</mat-card-title>
+          <mat-card-content>{{ task.description }}</mat-card-content>
+          <mat-card-actions class="action-button">
+            <button mat-button class="action-button-left" (click)="deleteTask(task.taskId)"><i class="material-icons">delete</i></button>
+            <button mat-button class="action-button-right" (click)="openEditDialog(task)"><i class="material-icons">open_in_full</i></button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </mat-card>
+  </div>
+
+  <div class="example-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Completed</mat-card-title>
+      </mat-card-header>
+      <div
+        cdkDropList
+        id="completed"
+        [cdkDropListData]="completedTasks"
+        [cdkDropListConnectedTo]="['unassigned', 'inProgress', 'test']"
+        class="example-list mat-elevation-z2"
+        (cdkDropListDropped)="drop($event)">
+        <mat-card *ngFor="let task of completedTasks" class="example-box" cdkDrag>
+          <mat-card-title>{{ task.taskName }}</mat-card-title>
+          <mat-card-content>{{ task.description }}</mat-card-content>
+          <mat-card-actions class="action-button">
+            <button mat-button class="action-button-left" (click)="deleteTask(task.taskId)"><i class="material-icons">delete</i></button>
+            <button mat-button class="action-button-right" (click)="openEditDialog(task)"><i class="material-icons">open_in_full</i></button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<h1 mat-dialog-title class="dialog-title">Edit Task</h1>
+<div mat-dialog-content class="dialog-content">
+  <form [formGroup]="editTaskForm">
+    <mat-form-field>
+      <mat-label>Task Name</mat-label>
+      <input matInput formControlName="taskName">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+       <textarea matInput formControlName="description" rows="3"></textarea>
+    </mat-form-field>
+  </form>
+
+</div>
+<div class="task-details">
+    <p *ngIf="createdAt"><strong>Created At:</strong> {{ createdAt | date:'yyyy-MM-dd' }}</p>
+    <p *ngIf="updatedAt"><strong>Updated At:</strong> {{ updatedAt | date:'medium' }}</p>
+  </div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onSave()">Edit</button>
+</div>

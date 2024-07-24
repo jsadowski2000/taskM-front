@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Add Task</h2>
+<mat-dialog-content>
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Task Name</mat-label>
+      <input matInput formControlName="taskName" />
+      <!-- <mat-error *ngIf="taskForm.get('taskName')?.hasError('required')">
+        Task Name is required
+      </mat-error> -->
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Task Description</mat-label>
+      <input matInput formControlName="description" />
+      <!-- <mat-error *ngIf="taskForm.get('description')?.hasError('required')">
+        Task Description is required
+      </mat-error> -->
+    </mat-form-field>
+    <mat-dialog-actions>
+      <button mat-button (click)="onCancelClick()">Cancel</button>
+      <button mat-button type="submit">Create</button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

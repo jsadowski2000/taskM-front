@@ -1,58 +1,52 @@
-<div class="d-flex justify-content-center align-items-center vh-100">
-    <div class="card shadow login-card">
-      <div class="card-body">
-        <h2 class="card-title text-center">Rejestracja</h2>
-        <p class="text-center">Zarejestruj sie teraz!</p>
-      <form (ngSubmit)="onRegisterSubmit()" #registerForm="ngForm">
-        
-        <div class="form-floating mb-2">
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            placeholder="name@example.com"
-            value="test@example.com"
-            required
-            [(ngModel)]="registerData.email"
-            name="email"
-            #email="ngModel"
-          />
-          <label for="email">Email:</label>
-        </div>
-          
-        
-          <div class="form-floating mb-2">
-            <input
-              type="text"
-              class="form-control"
-              id="username"
-              placeholder="username"
-              required
-              [(ngModel)]="registerData.username"
-              name="username"
-              #username="ngModel"
-            />
-            <label for="username">Username:</label>
-          </div>
-        <div class="form-floating mb-2">
-           
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-              placeholder="password"
-              required
-              [(ngModel)]="registerData.password"
-              name="password"
-              #password="ngModel"
-            />
-            <label for="password">Password:</label>
-        </div>
-        <div class="d-flex justify-content-center mb-2">
-        <button class="btn btn-primary">Rejestruj</button>
+    <div class="container">
+      <mat-card class="register-card">
+        <mat-card-content>
+          <h2 class="text-center text-white">Rejestracja</h2>
+          <p class="text-center text-white">Zarejestruj się!</p>
+          <form (ngSubmit)="onRegisterSubmit()" #loginForm="ngForm">
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Email:</mat-label>
+              <input
+                matInput
+                type="email"
+                required
+                [(ngModel)]="registerData.email"
+                name="email"
+                #email="ngModel"
+              />
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Username:</mat-label>
+              <input
+                matInput
+                type="username"
+                required
+                [(ngModel)]="registerData.username"
+                name="username"
+                #username="ngModel"
+              />
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Password:</mat-label>
+              <input
+                matInput
+                type="password"
+                required
+                [(ngModel)]="registerData.password"
+                name="password"
+                #password="ngModel"
+              />
+            </mat-form-field>
+            <div class="button-container">
+              <button mat-raised-button color="primary" type="submit">Register</button>
+            </div>
+          </form>
+          <p class="text-center text-white">Masz konto?<a routerLink=""> Zaloguj się!</a></p>
+        </mat-card-content>
+      </mat-card>
     </div>
-      </form>
-      <p>Masz konto?<a routerLink=""> Zaloguj się!</a></p>
-    </div>
+    
     
     

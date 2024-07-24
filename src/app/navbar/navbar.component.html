@@ -1,7 +1,17 @@
-<nav class="navbar navbar-light bg-light">
+<!-- <nav class="navbar navbar-light bg-light">
     <form class="form-inline">
       <button class="btn btn-outline-success" type="button"> <i class="bi bi-bookmark-plus"></i> TASK </button>
       <i class="bi bi-bookmark-plus"></i>
       <button class="btn btn-outline-success" type="button" (click)="Logout()">Wyloguj</button>
     </form>
-  </nav>
+  </nav> -->
+
+
+  <div class="navbar-contariner">
+    <mat-toolbar>
+    <span class="title">Task Manager</span>
+    <button mat-raised-button color="primary" type="button" (click)="openAddTaskDialog()">Add Task</button>
+    <span class="toolbar-spacer"></span>
+    <button mat-raised-button color="primary" type="button" (click)="Logout()">Logout</button>
+  </mat-toolbar>
+  </div>

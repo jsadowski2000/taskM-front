@@ -3,18 +3,28 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthResponseDto } from './authResponseInteface';
+import { CookieService } from 'ngx-cookie-service';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   standalone: true,
-  imports: [FormsModule, RouterModule],
-  providers: [ToastrService],
+  imports: [FormsModule, RouterModule,MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatIconModule,],
+  providers: [ToastrService,CookieService],
 })
 export class LoginComponent {
 
-  constructor(private toastr: ToastrService, private router: Router){}
+  constructor(private toastr: ToastrService, private router: Router, private cookieService: CookieService){}
 
 
   loginData = {
@@ -42,8 +52,8 @@ export class LoginComponent {
     {
       const responseData: AuthResponseDto = await response.json();
       this.toastr.success('Login successful', 'Succes', { timeOut: 5000 });
-      localStorage.setItem('jwt', responseData.token);
-      localStorage.setItem('refresh_token', responseData.refreshToken)
+      this.cookieService.set('jwt', responseData.token);
+      this.cookieService.set('refresh_token', responseData.refreshToken);
       this.router.navigateByUrl('/tasks');
     }                             
   }
