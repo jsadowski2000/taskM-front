@@ -6,6 +6,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskService } from '../taskservice/taskservice';
 import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
+import { HttpClient } from '@angular/common/http';
+import { tap } from 'rxjs';
 
 
 @Component({
@@ -17,7 +19,7 @@ import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  constructor(private router: Router, private cookieService: CookieService, private dialog: MatDialog,private taskService: TaskService){}
+  constructor(private router: Router, private cookieService: CookieService, private dialog: MatDialog,private taskService: TaskService, private http: HttpClient){}
 
   openAddTaskDialog(): void {
     const dialogRef = this.dialog.open(TaskDialogComponent, {
@@ -33,10 +35,12 @@ export class NavbarComponent {
     });
   }
 
-  async Logout(){
-    this.cookieService.deleteAll();
-    this.router.navigateByUrl('/');
+  async logout(): Promise<void> {
 
+    return this.http.post<void>(`http://localhost:5099/auth/token/revoke`, {})
+    .pipe(
+      tap(() =>{ this.cookieService.deleteAll(); this.router.navigateByUrl('/')})
+    ).toPromise();
   }
 
 }

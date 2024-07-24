@@ -35,7 +35,7 @@ export class TaskService {
     return this.http.patch<void>(`${this.apiUrl}/${userId}/${task.taskId}`, {
       status: task.status
     }).pipe(
-      tap(() => this.refreshTasks())
+      tap(() =>{ this.refreshTasks()})
     );
   }
 
