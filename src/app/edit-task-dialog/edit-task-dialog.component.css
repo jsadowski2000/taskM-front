@@ -12,7 +12,7 @@
   mat-form-field {
     width: 100%; /* Make form fields take the full width */
     max-width: 300px; /* Adjust max width as needed */
-    margin-bottom: 16px; /* Space between form fields */
+    margin-bottom: 0px; /* Space between form fields */
   }
   
   .task-details {
@@ -30,4 +30,6 @@
   }
 
   
-  
+  .noChanges-container{
+    padding-bottom: 10px;
+  }

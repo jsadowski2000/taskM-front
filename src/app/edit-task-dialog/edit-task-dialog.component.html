@@ -1,6 +1,6 @@
 <h1 mat-dialog-title class="dialog-title">Edit Task</h1>
 <div mat-dialog-content class="dialog-content">
-  <form [formGroup]="editTaskForm">
+  <form [formGroup]="editTaskForm"(submit)="onSave()">
     <mat-form-field>
       <mat-label>Task Name</mat-label>
       <input matInput formControlName="taskName">
@@ -10,7 +10,9 @@
        <textarea matInput formControlName="description" rows="3"></textarea>
     </mat-form-field>
   </form>
-
+  <div class="noChanges-container" *ngIf="noChangesDetected" style="color: red;">
+    Enter the changes to edit task.
+  </div>
 </div>
 <div class="task-details">
     <p *ngIf="createdAt"><strong>Created At:</strong> {{ createdAt | date:'yyyy-MM-dd' }}</p>
@@ -19,5 +21,5 @@
 
 <div mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button (click)="onSave()">Edit</button>
+  <button mat-button (click)="onSave()"  (keyup.enter)="onSave()">Edit</button>
 </div>

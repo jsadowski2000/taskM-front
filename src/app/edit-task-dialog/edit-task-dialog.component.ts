@@ -40,6 +40,7 @@ export class EditTaskDialogComponent {
   editTaskForm: FormGroup;
   createdAt: Date | null;
   updatedAt: Date | null;
+  noChangesDetected: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<EditTaskDialogComponent>,
@@ -57,9 +58,15 @@ export class EditTaskDialogComponent {
 
   onSave(): void {
     if (this.editTaskForm.valid) {
+      const formValue = this.editTaskForm.value;
+      if (formValue.taskName === this.data.taskName && formValue.description === this.data.description) {
+        this.noChangesDetected = true;
+        return;
+      }
       this.dialogRef.close(this.editTaskForm.value);
     }
   }
+
 
   onCancel(): void {
     this.dialogRef.close();
